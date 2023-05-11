@@ -12,13 +12,21 @@
 
 <h2> Search by:</h2>
 
-<button> Name</button>
+<button>Name</button>
 <br>
-<button> Scientific Name</button>
+<button>Scientific Name</button>
 <br>
-<button> Property</button>
+<button>Folk Name(s)</button>
 <br>
-<button> Planet</button>
+<button>Planet</button>
+<br>
+<button>Element</button>
+<br>
+<button>Deities</button>
+<br>
+<button>Properties</button>
+<br>
+
 </template>
 
 <style>
@@ -27,7 +35,7 @@ h1 {
     text-align: center;
     font-size: 6em;
     line-height: 0.75em;
-    margin: 0.5em;
+    margin: 0.4em;
 }
 
 h2 {
@@ -37,6 +45,6 @@ h2 {
 }
 
 .spacer {
-  height: 6em;
+  height: 4em;
 }
 </style>
