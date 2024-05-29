@@ -1,10 +1,13 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue';
-import Home from './components/Home.vue';
+import HelloWorld from './views/HelloWorld.vue';
+import Home from './views/Home.vue';
 </script>
 
 <template>
-  <Home/>
+  <br />
+  <router-view v-slot="{ Component }">
+    <component :is="Component" />
+  </router-view>
 </template>
 
 <style scoped>
