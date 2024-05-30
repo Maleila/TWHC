@@ -2,11 +2,11 @@ import { createApp } from 'vue'
 import "../public/main.css";
 import App from './App.vue'
 import router from "./router";
-import { getDatabase } from "firebase/database";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { VueFire, VueFireAuth } from "vuefire";
+import { getFirestore } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -19,14 +19,24 @@ const firebaseConfig = {
   storageBucket: "twhc-2f600.appspot.com",
   messagingSenderId: "647297836844",
   appId: "1:647297836844:web:d2050c5a08aafb655c2e89",
-  measurementId: "G-EGSKBLL4DP"
+  measurementId: "G-EGSKBLL4DP",
+  databaseURL: "https://TWHC-default.firebaseio.com",
 };
 
-createApp(App).use(VueFire, {
-    firebaseApp: initializeApp(firebaseConfig),
-    modules: [VueFireAuth()],
-  })
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+// Initialize Cloud Firestore and get a reference to the service
+const db = getFirestore(app);
+
+ createApp(App)
+//     .use(VueFire, {
+//     // imported above but could also just be created here
+//     app,
+//     modules: [
+//       // we will see other modules later on
+//       VueFireAuth(),
+//     ],
+//   })
   .use(router)
   .mount('#app')
-
-  const database = getDatabase(App)
