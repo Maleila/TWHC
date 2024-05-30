@@ -59,6 +59,12 @@ export default {
 <router-link to="/browse" custom v-slot="{ navigate }">
     <button @click="navigate" role="link">Browse</button>
 </router-link>
+<h2>
+    Or add some plants:
+</h2>
+<router-link to="/add" custom v-slot="{ navigate }">
+    <button @click="navigate" role="link">Add</button>
+</router-link>
 
 </template>
 

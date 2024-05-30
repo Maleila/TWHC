@@ -2,10 +2,12 @@ import { createRouter, createWebHistory, parseQuery } from "vue-router";
 import Home from "../views/Home.vue"; //it super didn't want to do the @, maybe that's not a thing anymore?
 import Search from "../views/Search.vue";
 import Browse from "../views/Browse.vue";
+import Add from "../views/Add.vue";
 
 const routes = [
     { path: "/", name: "Home", component: Home }, // Tell the router to render home component when the home route is visited
     { path: "/browse", name: "Browse", component: Browse},
+    { path: "/add", name: "Add", component: Add},
     { path: "/search", 
     name: "Search",
     component: Search,
