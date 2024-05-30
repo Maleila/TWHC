@@ -1,5 +1,8 @@
 <script>
 export default {
+    data() {
+        searchTerm: ""
+    },
     props: {
         parameter: {
             type: String,
@@ -12,8 +15,11 @@ export default {
 <template>
 <div class="spacer"></div>
 <h2>
-    hello hello {{ parameter }}
+    search by {{ parameter }}:
 </h2>
+<!-- <div class="spacer"></div> -->
+<input v-model="searchTerm"/>
+<!-- really I think I want this to be a dropdown so you can only choose stuff pulled from the db -->
 
 </template>
 
