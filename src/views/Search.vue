@@ -3,7 +3,6 @@
 import { useFirestore } from "vuefire";
 import { collection, getDocs } from "firebase/firestore"; 
 
-import firebase from "firebase/compat/app";
 // Required for side-effects
 import "firebase/firestore";
 

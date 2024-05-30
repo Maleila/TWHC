@@ -53,6 +53,12 @@ export default {
     <button @click="navigate, setSearch('properties')" role="link">Properties</button>
 </router-link>
 <br>
+<h2>
+    Or browse collection:
+</h2>
+<router-link to="/browse" custom v-slot="{ navigate }">
+    <button @click="navigate" role="link">Browse</button>
+</router-link>
 
 </template>
 
