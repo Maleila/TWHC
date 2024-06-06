@@ -2,6 +2,7 @@
 import { useFirestore } from "vuefire";
 import { collection, getDocs } from "firebase/firestore"; 
 import "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore"; 
 
 export default {
     data() {
@@ -19,17 +20,32 @@ export default {
         }
     },
     methods: {
-        submit() {
+        async submit() {
             this.format();
+            const db = useFirestore();
+            // Add a new document in collection "cities"
+            await setDoc(doc(db, "plants", this.name), {
+                name: this.name,
+                scientific_name: this.scientific_name,
+                folk_names: this.folk_name,
+                planet: this.planet,
+                element: this.element,
+                deities: this.deities,
+                properties: this.properties
+            });
+            this.reset();
         },
         reset() {
             this.name = "";
             this.scientific_name = "";
             this.folk_name = [];
+            this.folkStr = "";
             this.planet = "";
             this.element = "";
             this.deities = [];
+            this.deitiesStr = ""
             this.properties = [];
+            this.propertiesStr = "";
         },
         format() {
             this.folk_name = this.folkStr.split(",");
