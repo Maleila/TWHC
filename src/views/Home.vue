@@ -30,11 +30,11 @@ export default {
 </router-link>
 <br>
 <router-link to="/search" custom v-slot="{ navigate }">
-    <button @click="navigate, setSearch('scientific name')" role="link">Scientific Name</button>
+    <button @click="navigate, setSearch('scientific_name')" role="link">Scientific Name</button>
 </router-link>
 <br>
 <router-link to="/search" custom v-slot="{ navigate }">
-    <button @click="navigate, setSearch('folk name')" role="link">Folk Name(s)</button>
+    <button @click="navigate, setSearch('folk_names')" role="link">Folk Name(s)</button>
 </router-link>
 <br>
 <router-link to="/search" custom v-slot="{ navigate }">

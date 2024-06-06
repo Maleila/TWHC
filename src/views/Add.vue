@@ -48,9 +48,9 @@ export default {
             this.propertiesStr = "";
         },
         format() {
-            this.folk_name = this.folkStr.split(",");
-            this.deities = this.deitiesStr.split(",");
-            this.properties = this.propertiesStr.split(",");
+            this.folk_name = this.folkStr.split(", ");
+            this.deities = this.deitiesStr.split(", ");
+            this.properties = this.propertiesStr.split(", ");
         }
     }
 }

@@ -10,7 +10,8 @@ import "firebase/firestore";
 export default {
     data() {
         return {
-            searchTerm: ""
+            searchTerm: "",
+            results: []
         }
     },
     async mounted() {
@@ -23,18 +24,32 @@ export default {
     },
     methods: {
         async search() {
+            this.reset();
+            //TODO: figure out how to deal w capitalization... may have set that up poorly
+
             // Create a reference to the cities collection
             const db = useFirestore();
             const plantRef = collection(db, "plants");
 
-            // Create a query against the collection.
-            const q = query(plantRef, where(this.parameter, "==", this.searchTerm));
-
+            let q;
+            if(this.parameter == "folk_names" || this.parameter == "properties" || 
+            this.parameter == "deities") {
+                // Create a query against the collection
+            q = query(plantRef, where(this.parameter, "array-contains", this.searchTerm));
+            } else {
+                // Create a query against the collection
+            q = query(plantRef, where(this.parameter, "==", this.searchTerm));
+            }
+        
             const querySnapshot = await getDocs(q);
             querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
-            console.log(`${doc.id}: ${doc.data().name}, ${doc.data().scientific_name}`);
+            //console.log(`${doc.id}: ${doc.data().name}, ${doc.data().scientific_name}`);
+            this.results.push(`${doc.data().name}`);
             });
+        },
+        reset() {
+            this.results = [];
         }
     },
     props: {
@@ -60,6 +75,11 @@ export default {
 <button @click="search">
 Search
 </button>
+<br>
+<br>
+<li v-for="item in results">
+ {{ item }}
+</li>
 
 </template>
 
