@@ -3,6 +3,7 @@ import Home from "../views/Home.vue"; //it super didn't want to do the @, maybe 
 import Search from "../views/Search.vue";
 import Browse from "../views/Browse.vue";
 import Add from "../views/Add.vue";
+import Info from "../views/Info.vue";
 
 const routes = [
     { path: "/", name: "Home", component: Home }, // Tell the router to render home component when the home route is visited
@@ -13,6 +14,12 @@ const routes = [
     component: Search,
     props: (route) => ({
         parameter: route.query.parameter,
+    })},
+    { path: "/info", 
+    name: "Info",
+    component: Info,
+    props: (route) => ({
+        plant: route.query.plant,
     })},
 ];
 

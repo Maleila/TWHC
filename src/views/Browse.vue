@@ -7,6 +7,7 @@ export default {
     data() {
         return {
             plants: []
+            
         };
     },
     mounted() {
@@ -20,6 +21,10 @@ export default {
             querySnapshot.forEach((doc) => {
                 this.plants.push(`${doc.data().name}`);
             });
+        },
+        toInfo(param) {
+            const plant = param;
+            this.$router.push({ name: "Info", query: { plant } });
         }
     }
 }
@@ -31,8 +36,12 @@ export default {
 </h2>
 
 <li v-for="item in plants">
- {{ item }}
+ <!-- {{ item }} -->
+ <router-link to="/info" custom v-slot="{ navigate }">
+    <button @click="navigate, toInfo(item)" role="link">{{ item }}</button>
+</router-link>
 </li>
+
 
 </template>
 

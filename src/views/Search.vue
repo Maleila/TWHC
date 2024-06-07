@@ -25,9 +25,9 @@ export default {
     methods: {
         async search() {
             this.reset();
-            //TODO: figure out how to deal w capitalization... may have set that up poorly
+            this.searchTerm = this.searchTerm.toLowerCase();
 
-            // Create a reference to the cities collection
+            // Create a reference to the plant collection
             const db = useFirestore();
             const plantRef = collection(db, "plants");
 
