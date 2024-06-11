@@ -33,13 +33,13 @@ export default {
             querySnapshot.forEach((doc) => {
                 this.name = `${doc.data().name}`;
                 this.scientific_name = `${doc.data().scientific_name}`;
-                this.folk_name = `${doc.data().folk_name}`;
+                this.folk_name = `${doc.data().folk_names}`;
                 this.element = `${doc.data().element}`;
                 this.planet = `${doc.data().planet}`;
                 this.deities = `${doc.data().deities}`;
                 this.properties = `${doc.data().properties}`
             });
-        }
+        },
     },
     props: {
         plant: {
@@ -51,22 +51,20 @@ export default {
 </script>
 
 <template>
-<h2> Info about {{ plant }}</h2>
+<h1>{{ plant }}</h1>
 <br>
 <h2>
-    {{ name }}
+    Scientific Name: <i>{{ scientific_name }}</i>
     <br>
-    {{ scientific_name }}
+    Folk Names: {{ folk_name }}
     <br>
-    {{ folk_name }}
+    Element: {{ element }}
     <br>
-    {{ element }}
+    Planet: {{ planet }}
     <br>
-    {{ planet }}
+    Deities: {{ deities }}
     <br>
-    {{ deities }}
-    <br>
-    {{ properties }}
+    Properties: {{ properties }}
 </h2>
 </template>
 

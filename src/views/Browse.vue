@@ -6,12 +6,12 @@ import "firebase/firestore";
 export default {
     data() {
         return {
-            plants: []
-            
+            plants: [] 
         };
     },
     mounted() {
         this.loadList();
+        // why is this so slow??
     },
     methods: {
         async loadList() {
@@ -34,14 +34,15 @@ export default {
 <h2>
     Browse
 </h2>
+<div class="button">
 
-<li v-for="item in plants">
- <!-- {{ item }} -->
- <router-link to="/info" custom v-slot="{ navigate }">
-    <button @click="navigate, toInfo(item)" role="link">{{ item }}</button>
-</router-link>
-</li>
-
+    <li v-for="item in plants">
+        <router-link to="/info" custom v-slot="{ navigate }">
+            <button @click="navigate, toInfo(item)" role="link">{{ item }}</button>
+        </router-link>
+    
+    </li>
+</div>
 
 </template>
 
@@ -61,5 +62,22 @@ h2 {
 }
 .spacer {
   height: 4em;
+}
+
+.button button {
+  color: #434343;
+  font-family: inherit;
+  font-size: 1em;
+  font-weight: 100;
+  margin-bottom: 1em;
+  border: none;
+  background: none;
+  /* letter-spacing: 0.2em; */
+  transition: 0.3s;
+}
+
+.button button:hover {
+  text-decoration: underline;
+  filter: drop-shadow(2px 3px 1px rgb(0 0 0 / 0.3));
 }
 </style>

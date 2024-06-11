@@ -23,7 +23,7 @@ export default {
         async submit() {
             this.format();
             const db = useFirestore();
-            // Add a new document in collection "cities"
+            // Add a new document in collection
             await setDoc(doc(db, "plants", this.name), {
                 name: this.name,
                 scientific_name: this.scientific_name,

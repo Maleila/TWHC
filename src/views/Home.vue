@@ -20,7 +20,7 @@ export default {
     Technowiccan Herbal Companion
 </h1>
 <h2>
-    A searchable herb database of Cunningham's Encyclopedia of Magical Herbs
+    A searchable herb database of <i>Cunningham's Encyclopedia of Magical Herbs</i>
 </h2>
 
 <h2> Search by:</h2>
