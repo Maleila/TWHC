@@ -70,7 +70,7 @@ export default {
 <h2>
     search by {{ parameter }}:
 </h2>
-<input v-model="searchTerm"/>
+<input v-model="searchTerm" @keydown.enter="search"/>
 <!-- really I think I want this to be a dropdown so you can only choose stuff pulled from the db -->
 <!-- but I'll do that later -->
 <br>
