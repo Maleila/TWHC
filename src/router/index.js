@@ -4,11 +4,13 @@ import Search from "../views/Search.vue";
 import Browse from "../views/Browse.vue";
 import Add from "../views/Add.vue";
 import Info from "../views/Info.vue";
+import MultiSearch from "../views/MultiSearch.vue";
 
 const routes = [
     { path: "/", name: "Home", component: Home }, // Tell the router to render home component when the home route is visited
     { path: "/browse", name: "Browse", component: Browse},
     { path: "/add", name: "Add", component: Add},
+    { path: "/multisearch", name: "Multisearch", component: MultiSearch},
     { path: "/search", 
     name: "Search",
     component: Search,

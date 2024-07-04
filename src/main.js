@@ -2,6 +2,8 @@ import { createApp } from 'vue'
 import "../public/main.css";
 import App from './App.vue'
 import router from "./router";
+import { Dropdown } from 'vue-simple-search-dropdown';
+
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -30,13 +32,6 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
  createApp(App)
-//     .use(VueFire, {
-//     // imported above but could also just be created here
-//     app,
-//     modules: [
-//       // we will see other modules later on
-//       VueFireAuth(),
-//     ],
-//   })
+  .use(Dropdown)
   .use(router)
   .mount('#app')

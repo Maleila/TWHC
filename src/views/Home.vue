@@ -52,6 +52,10 @@ export default {
     <router-link to="/search" custom v-slot="{ navigate }">
         <button @click="navigate, setSearch('properties')" role="link">Properties</button>
     </router-link>
+    <br>
+    <router-link to="/multisearch" custom v-slot="{ navigate }">
+        <button @click="navigate" role="link">Advanced Search</button>
+    </router-link>
 </div>
 <br>
 <h2>

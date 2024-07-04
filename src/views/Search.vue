@@ -3,15 +3,20 @@
 import { useFirestore } from "vuefire";
 import { collection, getDocs } from "firebase/firestore"; 
 import { query, where } from "firebase/firestore";
+//import Dropdown from 'vue-simple-search-dropdown';
 
 // Required for side-effects
 import "firebase/firestore";
 
 export default {
+    // components: {
+    //     Dropdown,
+    // },
     data() {
         return {
             searchTerm: "",
-            results: []
+            results: [],
+            test: ["test1", "test2"]
         }
     },
     async mounted() {
