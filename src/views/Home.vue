@@ -34,7 +34,7 @@ export default {
     </router-link>
     <br>
     <router-link to="/search" custom v-slot="{ navigate }">
-        <button @click="navigate, setSearch('folk_names')" role="link">Folk Name(s)</button>
+        <button @click="navigate, setSearch('folk_names')" role="link">Folk Name</button>
     </router-link>
     <br>
     <router-link to="/search" custom v-slot="{ navigate }">
@@ -46,11 +46,11 @@ export default {
     </router-link>
     <br>
     <router-link to="/search" custom v-slot="{ navigate }">
-        <button @click="navigate, setSearch('deities')" role="link">Deities</button>
+        <button @click="navigate, setSearch('deities')" role="link">Deity</button>
     </router-link>
     <br>
     <router-link to="/search" custom v-slot="{ navigate }">
-        <button @click="navigate, setSearch('properties')" role="link">Properties</button>
+        <button @click="navigate, setSearch('properties')" role="link">Property</button>
     </router-link>
     <br>
     <router-link to="/multisearch" custom v-slot="{ navigate }">

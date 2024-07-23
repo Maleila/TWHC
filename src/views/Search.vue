@@ -3,15 +3,14 @@
 import { useFirestore } from "vuefire";
 import { collection, getDocs } from "firebase/firestore"; 
 import { query, where } from "firebase/firestore";
-//import Dropdown from 'vue-simple-search-dropdown';
 
 // Required for side-effects
 import "firebase/firestore";
 
 export default {
-    // components: {
-    //     Dropdown,
-    // },
+    //  components: {
+    //      ModelSelect,
+    //  },
     data() {
         return {
             searchTerm: "",
@@ -93,11 +92,26 @@ Search
         </router-link>
     </li>
 </div>
-
+<div class="dropdown">
+    <vue3-simple-typeahead
+            id="typeahead"
+            placeholder="Start writing..."
+            :items="['Plant1','Plant2','Plant3']"
+            :minInputLength="1"
+            :itemProjection="itemProjectionFunction"
+            @selectItem="selectItemEventHandler"
+            @onInput="onInputEventHandler"
+            @onFocus="onFocusEventHandler"
+            @onBlur="onBlurEventHandler"
+        >
+        </vue3-simple-typeahead>
+</div>
+    
 </template>
 
 <!-- should pull this out into a universal style -->
 <style>
+
 h1 {
     font-family: "Trattatello";
     text-align: center;
@@ -130,5 +144,10 @@ h2 {
 .button button:hover {
   text-decoration: underline;
   filter: drop-shadow(2px 3px 1px rgb(0 0 0 / 0.3));
+}
+
+.dropdown {
+    max-width: fit-content;
+    margin: auto;
 }
 </style>

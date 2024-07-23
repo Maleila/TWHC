@@ -10,7 +10,8 @@ import Home from './views/Home.vue';
   </router-view>
 </template>
 
-<style scoped>
+<style>
+
 .logo {
   height: 6em;
   padding: 1.5em;

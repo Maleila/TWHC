@@ -2,7 +2,9 @@ import { createApp } from 'vue'
 import "../public/main.css";
 import App from './App.vue'
 import router from "./router";
-import { Dropdown } from 'vue-simple-search-dropdown';
+import SimpleTypeahead from 'vue3-simple-typeahead';
+import 'vue3-simple-typeahead/dist/vue3-simple-typeahead.css';
+//import { Dropdown } from 'vue-simple-search-dropdown';
 
 
 // Import the functions you need from the SDKs you need
@@ -32,6 +34,6 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
  createApp(App)
-  .use(Dropdown)
   .use(router)
+  .use(SimpleTypeahead)
   .mount('#app')
