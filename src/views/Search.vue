@@ -15,16 +15,18 @@ export default {
         return {
             searchTerm: "",
             results: [],
-            test: ["test1", "test2"]
+            name: [],
+            scientific_name: [],
+            folk_names: [],
+            planet: ["earth", "mars", "moon", "saturn", "venus", "uranus", "sun"], //missing some?? idk
+            element: ["earth", "air", "fire", "water"],
+            deities: [],
+            properties: []
         }
     },
     async mounted() {
         const db = useFirestore();
-
-//         const querySnapshot = await getDocs(collection(db, "plants"));
-//         querySnapshot.forEach((doc) => {
-//         console.log(`${doc.id}: ${doc.data().name}, ${doc.data().planet}`);
-// });
+        this.loadList();
     },
     methods: {
         async search() {
@@ -32,6 +34,45 @@ export default {
             this.searchTerm = this.searchTerm.toLowerCase();
 
             // Create a reference to the plant collection
+            const db = useFirestore();
+            const plantRef = collection(db, "plants");
+
+            let q;
+            if(this.parameter == "folk_names" || this.parameter == "properties" || 
+            this.parameter == "deities") {
+                // Create a query against the collection
+            q = query(plantRef, where(this.parameter, "array-contains", this.searchTerm));
+            } else {
+                // Create a query against the collection
+            q = query(plantRef, where(this.parameter, "==", this.searchTerm));
+            }
+        
+            const querySnapshot = await getDocs(q);
+            querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            //console.log(`${doc.id}: ${doc.data().name}, ${doc.data().scientific_name}`);
+            this.results.push(`${doc.data().name}`);
+            });
+        },
+        async loadList() {
+            const db = useFirestore();
+
+            const querySnapshot = await getDocs(collection(db, "plants"));
+            querySnapshot.forEach((doc) => {
+                this.name.push(`${doc.data().name}`);
+                this.scientific_name.push(`${doc.data().scientific_name}`);
+
+                //probably will NOT work since these are multiple-element fields
+                //probably want to loop thru and check if each element is new
+                this.folk_names.push(`${doc.data().folk_names}`); 
+                this.deities.push(`${doc.data().deities}`);
+                this.properties.push(`${doc.data().properties}`);
+            });
+        },
+        async select(item) {
+            this.reset();
+            this.searchTerm = item;
+
             const db = useFirestore();
             const plantRef = collection(db, "plants");
 
@@ -74,12 +115,29 @@ export default {
 <h2>
     search by {{ parameter }}:
 </h2>
-<input v-model="searchTerm" @keydown.enter="search"/>
+<div class="dropdown">
+    <vue3-simple-typeahead
+            id="typeahead"
+            placeholder="Search here..."
+            :items="planet" 
+            :minInputLength="1"
+            :itemProjection="itemProjectionFunction"
+            @selectItem="select"
+            @onInput="onInputEventHandler"
+            @onFocus="onFocusEventHandler"
+            @onBlur="onBlurEventHandler"
+        >
+        <!-- TODO: thought I could just say "parameter" for items but I don't think that'll work -->
+            <!-- > ^^not sure what all these methods are... -->
+        </vue3-simple-typeahead>
+</div>
+<br>
+<!-- <input v-model="searchTerm" @keydown.enter="search"/> -->
 <!-- really I think I want this to be a dropdown so you can only choose stuff pulled from the db -->
 <!-- but I'll do that later -->
-<br>
+<!-- <br>
 {{ searchTerm }}
-<br>
+<br> -->
 <button @click="search">
 Search
 </button>
@@ -91,22 +149,7 @@ Search
             <button @click="navigate, toInfo(item)" role="link">{{ item }}</button>
         </router-link>
     </li>
-</div>
-<div class="dropdown">
-    <vue3-simple-typeahead
-            id="typeahead"
-            placeholder="Start writing..."
-            :items="['Plant1','Plant2','Plant3']"
-            :minInputLength="1"
-            :itemProjection="itemProjectionFunction"
-            @selectItem="selectItemEventHandler"
-            @onInput="onInputEventHandler"
-            @onFocus="onFocusEventHandler"
-            @onBlur="onBlurEventHandler"
-        >
-        </vue3-simple-typeahead>
-</div>
-    
+</div>  
 </template>
 
 <!-- should pull this out into a universal style -->
