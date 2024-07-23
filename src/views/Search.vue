@@ -15,10 +15,11 @@ export default {
         return {
             searchTerm: "",
             results: [],
+            dropdown_list: [],
             name: [],
             scientific_name: [],
             folk_names: [],
-            planet: ["earth", "mars", "moon", "saturn", "venus", "uranus", "sun"], //missing some?? idk
+            planet: ["earth", "mars", "moon", "saturn", "venus", "uranus", "sun", "pluto"], //missing some?? idk
             element: ["earth", "air", "fire", "water"],
             deities: [],
             properties: []
@@ -27,8 +28,25 @@ export default {
     async mounted() {
         const db = useFirestore();
         this.loadList();
-    },
+
+        if(this.parameter == "name") {
+            this.dropdown_list = this.name;
+        } else if(this.parameter == "scientific_name") {
+            this.dropdown_list = this.scientific_name;
+        } else if(this.parameter == "planet") {
+            this.dropdown_list = this.planet;
+        } else if(this.parameter == "element") {
+            this.dropdown_list = this.element;
+        } else if(this.parameter == "folk_names") {
+            this.dropdown_list = this.folk_names;
+        } else if(this.parameter == "deities") {
+            this.dropdown_list = this.deities;
+        } else if(this.parameter == "properties") {
+            this.dropdown_list = this.properties;
+        }
+    }, 
     methods: {
+        //this is outdated now
         async search() {
             this.reset();
             this.searchTerm = this.searchTerm.toLowerCase();
@@ -119,7 +137,7 @@ export default {
     <vue3-simple-typeahead
             id="typeahead"
             placeholder="Search here..."
-            :items="planet" 
+            :items="dropdown_list" 
             :minInputLength="1"
             :itemProjection="itemProjectionFunction"
             @selectItem="select"
@@ -127,7 +145,6 @@ export default {
             @onFocus="onFocusEventHandler"
             @onBlur="onBlurEventHandler"
         >
-        <!-- TODO: thought I could just say "parameter" for items but I don't think that'll work -->
             <!-- > ^^not sure what all these methods are... -->
         </vue3-simple-typeahead>
 </div>
