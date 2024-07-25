@@ -3,6 +3,7 @@ import { useFirestore } from "vuefire";
 import { collection, getDocs } from "firebase/firestore"; 
 import { query, where } from "firebase/firestore";
 
+//TODO: add select search for each input field
 export default {
     data() {
         return {

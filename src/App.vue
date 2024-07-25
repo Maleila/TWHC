@@ -1,5 +1,4 @@
 <script setup>
-import HelloWorld from './views/HelloWorld.vue';
 import Home from './views/Home.vue';
 </script>
 

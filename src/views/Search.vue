@@ -8,9 +8,6 @@ import { query, where } from "firebase/firestore";
 import "firebase/firestore";
 
 export default {
-    //  components: {
-    //      ModelSelect,
-    //  },
     data() {
         return {
             searchTerm: "",
@@ -46,32 +43,6 @@ export default {
         }
     }, 
     methods: {
-        //this is outdated now
-        async search() {
-            this.reset();
-            this.searchTerm = this.searchTerm.toLowerCase();
-
-            // Create a reference to the plant collection
-            const db = useFirestore();
-            const plantRef = collection(db, "plants");
-
-            let q;
-            if(this.parameter == "folk_names" || this.parameter == "properties" || 
-            this.parameter == "deities") {
-                // Create a query against the collection
-            q = query(plantRef, where(this.parameter, "array-contains", this.searchTerm));
-            } else {
-                // Create a query against the collection
-            q = query(plantRef, where(this.parameter, "==", this.searchTerm));
-            }
-        
-            const querySnapshot = await getDocs(q);
-            querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-            //console.log(`${doc.id}: ${doc.data().name}, ${doc.data().scientific_name}`);
-            this.results.push(`${doc.data().name}`);
-            });
-        },
         async loadList() {
             const db = useFirestore();
 
@@ -117,7 +88,6 @@ export default {
             const querySnapshot = await getDocs(q);
             querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
-            //console.log(`${doc.id}: ${doc.data().name}, ${doc.data().scientific_name}`);
             this.results.push(`${doc.data().name}`);
             });
         },
@@ -158,17 +128,6 @@ export default {
             <!-- > ^^not sure what all these methods are... -->
         </vue3-simple-typeahead>
 </div>
-<br>
-<!-- <input v-model="searchTerm" @keydown.enter="search"/> -->
-<!-- really I think I want this to be a dropdown so you can only choose stuff pulled from the db -->
-<!-- but I'll do that later -->
-<!-- <br>
-{{ searchTerm }}
-<br> -->
-<button @click="search">
-Search
-</button>
-<br>
 <br>
 <div class="button">
     <li v-for="item in results">
