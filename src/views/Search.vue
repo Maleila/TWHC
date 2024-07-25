@@ -19,7 +19,7 @@ export default {
             name: [],
             scientific_name: [],
             folk_names: [],
-            planet: ["earth", "mars", "moon", "saturn", "venus", "uranus", "sun", "pluto"], //missing some?? idk
+            planet: ["earth", "mars", "moon", "saturn", "venus", "uranus", "sun", "pluto", "jupiter"], //missing some?? idk
             element: ["earth", "air", "fire", "water"],
             deities: [],
             properties: []
@@ -80,11 +80,21 @@ export default {
                 this.name.push(`${doc.data().name}`);
                 this.scientific_name.push(`${doc.data().scientific_name}`);
 
-                //probably will NOT work since these are multiple-element fields
-                //probably want to loop thru and check if each element is new
-                this.folk_names.push(`${doc.data().folk_names}`); 
-                this.deities.push(`${doc.data().deities}`);
-                this.properties.push(`${doc.data().properties}`);
+                doc.data().folk_names.forEach((item) => {
+                    if(!this.folk_names.includes(item) && item.toLowerCase() != "na"){
+                        this.folk_names.push(item);
+                    }   
+                });
+                doc.data().deities.forEach((item) => {
+                    if(!this.deities.includes(item) && item.toLowerCase() != "na"){
+                        this.deities.push(item);
+                    }   
+                });
+                doc.data().properties.forEach((item) => {
+                    if(!this.properties.includes(item) && item.toLowerCase() != "na"){
+                        this.properties.push(item);
+                    }   
+                });
             });
         },
         async select(item) {
