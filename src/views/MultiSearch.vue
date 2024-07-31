@@ -20,7 +20,8 @@ export default {
             planetList: ["earth", "mars", "moon", "saturn", "venus", "uranus", "sun", "pluto", "jupiter"], //missing some?? idk
             elementList: ["earth", "air", "fire", "water"],
             deitiesList: [],
-            propertiesList: []
+            propertiesList: [],
+            noResults: false
         }
     },
     async mounted() {
@@ -74,8 +75,10 @@ export default {
                 });
             });
         },
+        //if all fields are blank when search is clicked will return the entire list :/
         async search() {
             this.results = [];
+            this.noResults = false;
             //idea from this stackoverflow post
             //https://stackoverflow.com/questions/69875064/firebase-version-9-using-multiple-conditional-where-clauses
             const db = useFirestore();
@@ -110,6 +113,9 @@ export default {
             this.results.push(`${doc.data().name}`);
             });
             this.reset();
+            if(this.results.length == 0) {
+                this.noResults = true;
+            }
         },
         reset() {
             this.name = "";
@@ -244,6 +250,7 @@ Properties: <div class="dropdown">
     Search
 </button>
 <br>
+<br>
 <div class="button">
     <li v-for="item in results">
         <router-link to="/info" custom v-slot="{ navigate }">
@@ -251,23 +258,8 @@ Properties: <div class="dropdown">
         </router-link>
     </li>
 </div>
+<h2 v-if="noResults">No results</h2> 
 </template>
 
 <style>
-h1 {
-    font-family: "Trattatello";
-    text-align: center;
-    font-size: 6em;
-    line-height: 0.75em;
-    margin: 0.4em;
-}
-
-h2 {
-    font-family: inherit;
-    font-weight: 100;
-    text-align: center;
-}
-.spacer {
-  height: 4em;
-}
 </style>

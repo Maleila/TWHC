@@ -16,7 +16,7 @@ export default {
             name: [],
             scientific_name: [],
             folk_names: [],
-            planet: ["earth", "mars", "moon", "saturn", "venus", "uranus", "sun", "pluto", "jupiter"], //missing some?? idk
+            planet: ["earth", "mars", "moon", "saturn", "venus", "uranus", "sun", "pluto", "jupiter", "mercury"], //missing some?? idk
             element: ["earth", "air", "fire", "water"],
             deities: [],
             properties: []
@@ -125,7 +125,7 @@ export default {
             @onFocus="onFocusEventHandler"
             @onBlur="onBlurEventHandler"
         >
-            <!-- > ^^not sure what all these methods are... -->
+            <!-- > TODO ^^not sure what all these methods are... -->
         </vue3-simple-typeahead>
 </div>
 <br>
@@ -135,48 +135,8 @@ export default {
             <button @click="navigate, toInfo(item)" role="link">{{ item }}</button>
         </router-link>
     </li>
-</div>  
+</div> 
 </template>
 
-<!-- should pull this out into a universal style -->
 <style>
-
-h1 {
-    font-family: "Trattatello";
-    text-align: center;
-    font-size: 6em;
-    line-height: 0.75em;
-    margin: 0.4em;
-}
-
-h2 {
-    font-family: inherit;
-    font-weight: 100;
-    text-align: center;
-}
-.spacer {
-  height: 4em;
-}
-
-.button button {
-  color: #434343;
-  font-family: inherit;
-  font-size: 1em;
-  font-weight: 100;
-  margin-bottom: 1em;
-  border: none;
-  background: none;
-  /* letter-spacing: 0.2em; */
-  transition: 0.3s;
-}
-
-.button button:hover {
-  text-decoration: underline;
-  filter: drop-shadow(2px 3px 1px rgb(0 0 0 / 0.3));
-}
-
-.dropdown {
-    max-width: fit-content;
-    margin: auto;
-}
 </style>
