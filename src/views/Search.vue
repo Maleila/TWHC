@@ -182,6 +182,20 @@ export default {
             this.$refs.detiiesInput.clearInput();
             this.$refs.propertiesInput.clearInput();
         },
+        format(str) {
+            // if(str === "na") {
+            //     return "NA";
+            // }
+            let temp = str.split("_");
+            str = "";
+            for(let i = 0; i < temp.length -1; i++) {
+                str += temp[i].charAt(0).toUpperCase() + temp[i].slice(1) + " ";
+                console.log(str);
+            }
+            str += temp[temp.length-1].charAt(0).toUpperCase() + temp[temp.length-1].slice(1);
+            console.log(str);
+            return str;
+        },
         toInfo(param) {
             const plant = param;
             this.$router.push({ name: "Info", query: { plant } });
@@ -309,7 +323,7 @@ Properties: <div class="dropdown">
 
 <div v-else>
     <h2>
-        search by {{ parameter }}:
+        Search by {{ this.format(parameter) }}:
     </h2>
     <div class="dropdown">
         <vue3-simple-typeahead
