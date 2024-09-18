@@ -287,7 +287,7 @@ Element: <div class="dropdown">
         >
         </vue3-simple-typeahead>
     </div>
-Deities: <div class="dropdown">
+Deity: <div class="dropdown">
     <vue3-simple-typeahead
             ref="detiiesInput"
             placeholder="Deity"
@@ -301,7 +301,7 @@ Deities: <div class="dropdown">
         >
         </vue3-simple-typeahead>
     </div>
-Properties: <div class="dropdown">
+Property: <div class="dropdown">
     <vue3-simple-typeahead
             ref="propertiesInput"
             placeholder="Property"
