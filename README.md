@@ -8,4 +8,4 @@ A web-based searchable herb database of *Cunningham's Encyclopedia of Magical He
  - ~~fix capitalization for "search by" on regular search page (probably roll into first bulletpoint)~~
  - ~~globalize style by pulling it out into app.vue~~
  - weird delay in loading entire plant list
- - when viewing info for specific plant, can see blank/placeholder values for a small but noticeable length of time
+ - ~~when viewing info for specific plant, can see blank/placeholder values for a small but noticeable length of time

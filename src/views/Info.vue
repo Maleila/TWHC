@@ -7,6 +7,7 @@ import "firebase/firestore";
 export default {
     data() {
         return {
+            loading: true,
             name: "",
             scientific_name: "",
             folk_name: [],
@@ -14,9 +15,7 @@ export default {
             element: "",
             deities: [],
             properties: [],
-            // folkStr: "",
-            // deitiesStr: "",
-            // propertiesStr: ""
+
         }
     },
     mounted() {
@@ -24,6 +23,7 @@ export default {
     },
     methods: {
         async fetchInfo() {
+            this.loading = true;
             const db = useFirestore();
             const plantRef = collection(db, "plants");
 
@@ -42,6 +42,7 @@ export default {
             this.properties = this.formatLists(this.properties);
             this.folk_name = this.formatLists(this.folk_name);
             this.deities = this.formatLists(this.deities);
+            this.loading = false;
         },
         capitalize(str) {
             if(str === "na") {
@@ -79,22 +80,38 @@ export default {
 </script>
 
 <template>
-<h1>{{ name }}</h1>
-<br>
-<h2>
-    Scientific Name: <i>{{ scientific_name }}</i>
+<div v-if="loading" class="loading-container">
+    <h2>Loading plant information...</h2>
+</div>
+<div v-else>
+    <h1>{{ name }}</h1>
     <br>
-    Folk Names: {{ folk_name }}
-    <br>
-    Element: {{ element }}
-    <br>
-    Planet: {{ planet }}
-    <br>
-    Deities: {{ deities }}
-    <br>
-    Properties: {{ properties }}
-</h2>
+    <h2>
+        Scientific Name: <i>{{ scientific_name }}</i>
+        <br>
+        Folk Names: {{ folk_name }}
+        <br>
+        Element: {{ element }}
+        <br>
+        Planet: {{ planet }}
+        <br>
+        Deities: {{ deities }}
+        <br>
+        Properties: {{ properties }}
+    </h2>
+</div>
 </template>
 
 <style>
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+}
+
+.loading-container h2 {
+    color: #666;
+    font-style: italic;
+}
 </style>
