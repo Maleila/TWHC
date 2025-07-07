@@ -342,15 +342,40 @@ Property: <div class="dropdown">
     </div>
 </div>
 <br>
-<div class="button">
-    <li v-for="item in results">
+<ul class="search-results">
+    <li v-for="item in results" class="clickable-item">
         <router-link to="/info" custom v-slot="{ navigate }">
-            <button @click="navigate, toInfo(item)" role="link">{{ item }}</button>
+            <span @click="navigate, toInfo(item)" role="link">{{ item }}</span>
         </router-link>
     </li>
-</div> 
+</ul> 
 <h2 v-if="noResults">No results</h2> 
 </template>
 
 <style>
+.search-results {
+    padding: 0;
+    margin: 0;
+    list-style: disc;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.search-results li {
+    display: list-item;
+    margin: 5px 0;
+    padding: 0;
+    text-align: center;
+}
+
+.clickable-item {
+    cursor: pointer;
+    color: inherit;
+}
+
+.clickable-item:hover {
+    text-decoration: underline;
+}
 </style>
